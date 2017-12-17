@@ -29,7 +29,6 @@
         </developer>
     </developers>
 
-
     <scm>
         <connection>scm:git:https://github.com/rhwayfun/spring-boot-rocketmq-starter.git</connection>
         <developerConnection>scm:git:https://github.com/rhwayfun/spring-boot-rocketmq-starter.git</developerConnection>
