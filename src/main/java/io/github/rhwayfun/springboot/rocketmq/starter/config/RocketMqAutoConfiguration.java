@@ -1,6 +1,6 @@
-package com.rhwayfun.springboot.rocketmq.starter.config;
+package io.github.rhwayfun.springboot.rocketmq.starter.config;
 
-import com.rhwayfun.springboot.rocketmq.starter.common.AbstractRocketMqConsumer;
+import io.github.rhwayfun.springboot.rocketmq.starter.common.AbstractRocketMqConsumer;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.exception.MQClientException;

@@ -1,4 +1,4 @@
-package com.rhwayfun.springboot.rocketmq.starter.constants;
+package io.github.rhwayfun.springboot.rocketmq.starter.constants;
 
 /**
  * @author rhwayfun

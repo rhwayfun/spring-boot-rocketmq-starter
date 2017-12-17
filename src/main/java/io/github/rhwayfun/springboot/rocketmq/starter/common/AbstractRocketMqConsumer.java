@@ -1,9 +1,9 @@
-package com.rhwayfun.springboot.rocketmq.starter.common;
+package io.github.rhwayfun.springboot.rocketmq.starter.common;
 
 import com.alibaba.fastjson.JSON;
-import com.rhwayfun.springboot.rocketmq.starter.constants.RocketMqContent;
-import com.rhwayfun.springboot.rocketmq.starter.constants.RocketMqTag;
-import com.rhwayfun.springboot.rocketmq.starter.constants.RocketMqTopic;
+import io.github.rhwayfun.springboot.rocketmq.starter.constants.RocketMqContent;
+import io.github.rhwayfun.springboot.rocketmq.starter.constants.RocketMqTag;
+import io.github.rhwayfun.springboot.rocketmq.starter.constants.RocketMqTopic;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;

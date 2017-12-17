@@ -1,4 +1,4 @@
-package com.rhwayfun.springboot.rocketmq.starter.config;
+package io.github.rhwayfun.springboot.rocketmq.starter.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
