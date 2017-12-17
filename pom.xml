@@ -10,7 +10,7 @@
 
     <name>spring-boot-rocketmq-starter</name>
     <description>
-        Open source Spring Boot Starter for Apache RocketMQ, which make it easier to develop with RocketMQ
+        Open Source Spring Boot Starter for Apache RocketMQ, which make it easier to develop with RocketMQ
     </description>
     <url>https://rhwayfun.github.io/spring-boot-rocketmq-starter/</url>
 
