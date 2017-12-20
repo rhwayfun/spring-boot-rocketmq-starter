@@ -1,9 +1,9 @@
 language: java
 
-sudo: false # faster builds
+sudo: false
 
 install:
-  - mvn --settings settings.xml install -DskipTests=true -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
+  - mvn --settings .travis/settings.xml install -DskipTests=true -Dgpg.skip -Dmaven.javadoc.skip=true -B -V
   
 before_install:
   - if [ ! -z "$GPG_SECRET_KEYS" ]; then echo $GPG_SECRET_KEYS | base64 --decode | $GPG_EXECUTABLE --import; fi
@@ -12,7 +12,7 @@ before_install:
 deploy:
   -
     provider: script
-    script: deploy.sh
+    script: .travis/deploy.sh
     skip_cleanup: true
     on:
       repo: rhwayfun/spring-boot-rocketmq-starter
