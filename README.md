@@ -1,7 +1,7 @@
 # Spring Boot RocketMQ Starter
 [![Build Status](https://travis-ci.org/rhwayfun/spring-boot-rocketmq-starter.svg?branch=master)](https://travis-ci.org/rhwayfun/spring-boot-rocketmq-starter)
 
-Open Source Spring Boot Starter for Apache RocketMQ, make it easier to develop with RocketMQ.
+Open Source Spring Boot Starter for Apache RocketMQ, develop with RocketMQ easily.
 
 # Quick Start
 
