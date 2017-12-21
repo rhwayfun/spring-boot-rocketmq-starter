@@ -6,7 +6,7 @@
 
 Open Source Spring Boot Starter for Apache RocketMQ, develop with RocketMQ easily.
 
-# Quick Start
+## Quick Start
 
 1. Maven Dependency
 
@@ -54,3 +54,7 @@ public class DemoRocketMqConsumerExample
 3. Producer
 
 待补充。。。
+
+## License
+
+采用Apache License 2.0协议进行许可
