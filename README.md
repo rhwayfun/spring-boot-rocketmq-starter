@@ -2,6 +2,7 @@
 [![Build Status](https://travis-ci.org/rhwayfun/spring-boot-rocketmq-starter.svg?branch=master)](https://travis-ci.org/rhwayfun/spring-boot-rocketmq-starter)
 [![Coverage Status](https://coveralls.io/repos/github/rhwayfun/spring-boot-rocketmq-starter/badge.svg?branch=master)](https://coveralls.io/github/rhwayfun/spring-boot-rocketmq-starter?branch=master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.rhwayfun/spring-boot-rocketmq-starter/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.rhwayfun/spring-boot-rocketmq-starter/badge.svg)
+[![License](https://img.shields.io/badge/license-Apache%202.0-orange.svg)](https://img.shields.io/badge/license-Apache%202.0-orange.svg)
 
 Open Source Spring Boot Starter for Apache RocketMQ, develop with RocketMQ easily.
 
