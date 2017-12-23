@@ -15,7 +15,7 @@ Open Source Spring Boot Starter for Apache RocketMQ, develop with RocketMQ easil
     <dependency>
         <groupId>io.github.rhwayfun</groupId>
         <artifactId>spring-boot-rocketmq-starter</artifactId>
-        <version>0.0.1.RELEASE</version>
+        <version>0.0.2.RELEASE</version>
     </dependency>
 
 ```

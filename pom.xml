@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.rhwayfun</groupId>
     <artifactId>spring-boot-rocketmq-starter</artifactId>
-    <version>0.0.1.RELEASE</version>
+    <version>0.0.2.RELEASE</version>
     <packaging>jar</packaging>
 
     <properties>
