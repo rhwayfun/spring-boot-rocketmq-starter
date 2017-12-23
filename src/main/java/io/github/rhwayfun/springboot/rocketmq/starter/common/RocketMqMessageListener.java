@@ -12,8 +12,9 @@ public interface RocketMqMessageListener<Content extends RocketMqContent> {
     /**
      * consumer msg.
      *
-     * @param content
-     * @return
+     * @param content cntent
+     * @param msg msg
+     * @return consume result
      */
     boolean consumeMsg(Content content, MessageExt msg);
 

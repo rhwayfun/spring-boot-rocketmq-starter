@@ -23,7 +23,7 @@ public class DefaultRocketMqProducer{
      * send msg.
      *
      * @param msg content
-     * @return
+     * @return send result
      */
     public boolean sendMsg(Message msg) {
         SendResult sendResult = null;
@@ -38,7 +38,7 @@ public class DefaultRocketMqProducer{
     /**
      * sene one way msg.
      *
-     * @param msg
+     * @param msg msg
      */
     public void sendOneWayMsg(Message msg) {
         try {
@@ -53,7 +53,7 @@ public class DefaultRocketMqProducer{
      *
      * @param msg content
      * @param delayLevel 1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h
-     * @return
+     * @return send result
      */
     public boolean sendDelayMsg(String topic, String tag, Message msg, int delayLevel) {
         msg.setDelayTimeLevel(delayLevel);

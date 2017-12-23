@@ -88,14 +88,14 @@ public abstract class AbstractRocketMqConsumer<Topic extends RocketMqTopic, Cont
     /**
      * subscribeTopicTags for specific consumer.
      *
-     * @return
+     * @return subscribeTopicTags
      */
     public abstract Map<String, Set<String>> subscribeTopicTags();
 
     /**
      * specific consumer group.
      *
-     * @return
+     * @return consumer group
      */
     public abstract String getConsumerGroup();
 
@@ -125,11 +125,6 @@ public abstract class AbstractRocketMqConsumer<Topic extends RocketMqTopic, Cont
         logger.info("consumer shutdown, {}", this.toString());
     }
 
-    /**
-     * @see ConsumeMode
-     * @value ConsumeMode.CONCURRENTLY
-     *
-     */
     public class DefaultMessageListenerConcurrently implements MessageListenerConcurrently {
 
         @Override
@@ -153,11 +148,6 @@ public abstract class AbstractRocketMqConsumer<Topic extends RocketMqTopic, Cont
         }
     }
 
-    /**
-     * @see ConsumeMode
-     * @value ConsumeMode.Orderly
-     *
-     */
     public class DefaultMessageListenerOrderly implements MessageListenerOrderly {
 
         @Override

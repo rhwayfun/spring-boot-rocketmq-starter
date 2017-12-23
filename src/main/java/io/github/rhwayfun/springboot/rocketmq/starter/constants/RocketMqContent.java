@@ -16,7 +16,7 @@ public class RocketMqContent implements Serializable {
     /**
      * FastJSON serialize
      *
-     * @return
+     * @return content json string
      */
     @Override
     public String toString() {

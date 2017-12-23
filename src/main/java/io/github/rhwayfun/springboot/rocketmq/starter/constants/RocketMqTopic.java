@@ -9,7 +9,7 @@ public interface RocketMqTopic {
     /**
      * get topic.
      *
-     * @return
+     * @return topic
      */
     String getTopic();
 
