@@ -6,6 +6,11 @@ package io.github.rhwayfun.springboot.rocketmq.starter.constants;
  */
 public interface RocketMqTopic {
 
+    /**
+     * get topic.
+     *
+     * @return
+     */
     String getTopic();
 
 }

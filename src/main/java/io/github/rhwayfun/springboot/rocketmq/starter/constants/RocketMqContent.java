@@ -13,6 +13,11 @@ public class RocketMqContent implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * FastJSON serialize
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return JSON.toJSONString(this, SerializerFeature.NotWriteDefaultValue);

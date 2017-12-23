@@ -8,53 +8,102 @@ Open Source Spring Boot Starter for Apache RocketMQ, develop with RocketMQ easil
 
 ## Quick Start
 
-1. Maven Dependency
+### Maven Dependency
 
 ```xml
 
     <dependency>
         <groupId>io.github.rhwayfun</groupId>
         <artifactId>spring-boot-rocketmq-starter</artifactId>
-        <version>0.0.1</version>
+        <version>0.0.1.RELEASE</version>
     </dependency>
 
 ```
+### Configuration
 
-2. Consumer
+You just need to add a few configurations on `application.properties`, configurations are like as follows:
 
-继承自`AbstractRocketMqConsumer`
+```properties
 
-使用示例：
-
-```java
-@Component
-public class DemoRocketMqConsumerExample
-        extends AbstractRocketMqConsumer<DemoRocketMqTopic, DemoRocketMqTag, DemoRocketMqContent> {
-
-    @Override
-    public Map<String, Set<String>> subscribeTopicTags() {
-        Map<String, Set<String>> topicSetMap = new HashMap<>();
-        Set<String> tagSet = new HashSet<>();
-        tagSet.add("TagA");
-        tagSet.add("TagB");
-        topicSetMap.put("TopicA", tagSet);
-        return topicSetMap;
-    }
-
-    @Override
-    public boolean handle(String topic, String tag, DemoRocketMqContent content, MessageExt msg) {
-        logger.info("receive msg[{}], topic:{}, tag:{}, content:{}", msg, topic, tag, content);
-        return true;
-    }
-
-}
+# Apache RocketMQ
+spring.rocketmq.nameServer=localhost:9876
+spring.rocketmq.producer-group-name=spring-boot-test-producer-group
 
 ```
 
-3. Producer
+Look, it's easy, but in the real environment, you need modify above configurations.
 
-待补充。。。
+### Consume message
+
+For consume message, just inherit from class `io.github.rhwayfun.springboot.rocketmq.starter.common.AbstractRocketMqConsumer`
+
+Example：
+
+```java
+
+@Component
+    public class DemoMqConsumer extends AbstractRocketMqConsumer<DemoMqTopic, DemoMqContent> {
+
+
+        @Override
+        public boolean consumeMsg(RocketMqContent content, MessageExt msg) {
+            System.out.println(new Date() + ", " + content);
+            return true;
+        }
+
+        @Override
+        public Map<String, Set<String>> subscribeTopicTags() {
+            Map<String, Set<String>> map = new HashMap<>();
+            Set<String> tags = new HashSet<>();
+            tags.add("test-tag");
+            map.put("test-topic", tags);
+            return map;
+        }
+
+        @Override
+        public String getConsumerGroup() {
+            return "test-consumer-group";
+        }
+    }
+
+    public class DemoMqTopic implements RocketMqTopic{
+
+        @Override
+        public String getTopic() {
+            return "test-topic";
+        }
+    }
+
+    public class DemoMqContent extends RocketMqContent {
+        private int id;
+        private String desc;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getDesc() {
+            return desc;
+        }
+
+        public void setDesc(String desc) {
+            this.desc = desc;
+        }
+    }
+
+```
+
+### Send message
+
+We encapsulate the part of the message sent for common use. The default implementation is `DefaultRocketMqProducer`.
+
+if you need send message with RocketMQ, autowire this bean in your application. 
 
 ## License
 
-采用Apache License 2.0协议进行许可
+Adopting the Apache License 2.0 protocol for licensing
+

@@ -9,7 +9,7 @@ package io.github.rhwayfun.springboot.rocketmq.starter.constants;
 public interface RocketMqTag {
 
     /**
-     * Gets tag.
+     * get tag.
      *
      * @return the tag
      */

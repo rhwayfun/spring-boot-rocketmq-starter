@@ -11,12 +11,47 @@ public class RocketMqProperties {
 
     static final String ROCKETMQ_PREFIX = "spring.rocketmq";
 
+    /**
+     * name server
+     */
     private String nameServer;
+
+    /**
+     * name of producer
+     */
     private String producerGroupName;
-    private String consumerGroupName;
-    private Integer consumeThreadMin;
-    private Integer consumeThreadMax;
-    private String messageModel;//CLUSTERING、BROADCASTING，默认CLUSTER
+
+    /**
+     * millis of send message timeout
+     */
+    private int producerSendMsgTimeout = 3000;
+
+    /**
+     * Compress message body threshold, namely, message body larger than 4k will be compressed on default.
+     */
+    private int producerCompressMsgBodyOverHowMuch = 1024 * 4;
+
+    /**
+     * <p> Maximum number of retry to perform internally before claiming sending failure in synchronous mode. </p>
+     * This may potentially cause message duplication which is up to application developers to resolve.
+     */
+    private int producerRetryTimesWhenSendFailed = 2;
+
+    /**
+     * <p> Maximum number of retry to perform internally before claiming sending failure in asynchronous mode. </p>
+     * This may potentially cause message duplication which is up to application developers to resolve.
+     */
+    private int producerRetryTimesWhenSendAsyncFailed = 2;
+
+    /**
+     * Indicate whether to retry another broker on sending failure internally.
+     */
+    private boolean producerRetryAnotherBrokerWhenNotStoreOk = false;
+
+    /**
+     * Maximum allowed message size in bytes.
+     */
+    private int producerMaxMessageSize = 1024 * 1024 * 4; // 4M
 
     public String getNameServer() {
         return nameServer;
@@ -34,36 +69,52 @@ public class RocketMqProperties {
         this.producerGroupName = producerGroupName;
     }
 
-    public String getConsumerGroupName() {
-        return consumerGroupName;
+    public int getProducerSendMsgTimeout() {
+        return producerSendMsgTimeout;
     }
 
-    public void setConsumerGroupName(String consumerGroupName) {
-        this.consumerGroupName = consumerGroupName;
+    public void setProducerSendMsgTimeout(int producerSendMsgTimeout) {
+        this.producerSendMsgTimeout = producerSendMsgTimeout;
     }
 
-    public Integer getConsumeThreadMin() {
-        return consumeThreadMin;
+    public int getProducerCompressMsgBodyOverHowMuch() {
+        return producerCompressMsgBodyOverHowMuch;
     }
 
-    public void setConsumeThreadMin(Integer consumeThreadMin) {
-        this.consumeThreadMin = consumeThreadMin;
+    public void setProducerCompressMsgBodyOverHowMuch(int producerCompressMsgBodyOverHowMuch) {
+        this.producerCompressMsgBodyOverHowMuch = producerCompressMsgBodyOverHowMuch;
     }
 
-    public Integer getConsumeThreadMax() {
-        return consumeThreadMax;
+    public int getProducerRetryTimesWhenSendFailed() {
+        return producerRetryTimesWhenSendFailed;
     }
 
-    public void setConsumeThreadMax(Integer consumeThreadMax) {
-        this.consumeThreadMax = consumeThreadMax;
+    public void setProducerRetryTimesWhenSendFailed(int producerRetryTimesWhenSendFailed) {
+        this.producerRetryTimesWhenSendFailed = producerRetryTimesWhenSendFailed;
     }
 
-    public String getMessageModel() {
-        return messageModel;
+    public int getProducerRetryTimesWhenSendAsyncFailed() {
+        return producerRetryTimesWhenSendAsyncFailed;
     }
 
-    public void setMessageModel(String messageModel) {
-        this.messageModel = messageModel;
+    public void setProducerRetryTimesWhenSendAsyncFailed(int producerRetryTimesWhenSendAsyncFailed) {
+        this.producerRetryTimesWhenSendAsyncFailed = producerRetryTimesWhenSendAsyncFailed;
+    }
+
+    public boolean isProducerRetryAnotherBrokerWhenNotStoreOk() {
+        return producerRetryAnotherBrokerWhenNotStoreOk;
+    }
+
+    public void setProducerRetryAnotherBrokerWhenNotStoreOk(boolean producerRetryAnotherBrokerWhenNotStoreOk) {
+        this.producerRetryAnotherBrokerWhenNotStoreOk = producerRetryAnotherBrokerWhenNotStoreOk;
+    }
+
+    public int getProducerMaxMessageSize() {
+        return producerMaxMessageSize;
+    }
+
+    public void setProducerMaxMessageSize(int producerMaxMessageSize) {
+        this.producerMaxMessageSize = producerMaxMessageSize;
     }
 
 }
