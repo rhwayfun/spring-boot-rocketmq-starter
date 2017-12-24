@@ -105,6 +105,49 @@ We encapsulate the part of the message sent for common use. The default implemen
 
 if you need send message with RocketMQ, autowire this bean in your application. 
 
+example: 
+
+```java
+
+@Component
+public class DemoRocketMqProducerExample {
+
+    @Resource
+    private DefaultRocketMqProducer producer; //this bean is provided by default.
+
+    @PostConstruct
+    public void execute() {
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                DemoRocketMqContent content = new DemoRocketMqContent();
+                content.setCityId(1);
+                content.setDesc("城市");
+                Message msg = new Message("TopicA", "TagA", content.toString().getBytes());
+                boolean sendResult = producer.sendMsg(msg);
+                System.out.println("发送结果：" + sendResult);
+            }
+        }, 0, 10000);
+    }
+
+}
+
+```
+
+## More configurations
+
+|   num   | config                                       | description   | default  |
+| ---- | ----------------------------------------     | ---- | -------- |
+| 1 | spring.rocketmq.nameServer |  name server    |  |
+| 2 | spring.rocketmq.producerGroupName |  name of producer    | |
+| 3 | spring.rocketmq.producerSendMsgTimeout |  millis of send message timeout    | 3000 |
+| 4 | spring.rocketmq.producerCompressMsgBodyOverHowMuch |  Compress message body threshold    | 4000 |
+| 5 | spring.rocketmq.producerRetryTimesWhenSendFailed |  Maximum number of retry to perform internally before claiming sending failure in synchronous mode    |  2 |
+| 6 | spring.rocketmq.producerRetryTimesWhenSendAsyncFailed |  Maximum number of retry to perform internally before claiming sending failure in asynchronous mode    | 2  |
+| 7 | spring.rocketmq.producerRetryAnotherBrokerWhenNotStoreOk |  Indicate whether to retry another broker on sending failure internally    | false |
+| 8 | spring.rocketmq.producerMaxMessageSize |  Maximum allowed message size in bytes    | 1024 * 4  |
+
+
 ## License
 
 Adopting the Apache License 2.0 protocol for licensing
