@@ -1,16 +1,6 @@
-# Spring Boot RocketMQ Starter
-[![Build Status](https://travis-ci.org/rhwayfun/spring-boot-rocketmq-starter.svg?branch=master)](https://travis-ci.org/rhwayfun/spring-boot-rocketmq-starter)
-[![Coverage Status](https://coveralls.io/repos/github/rhwayfun/spring-boot-rocketmq-starter/badge.svg?branch=master)](https://coveralls.io/github/rhwayfun/spring-boot-rocketmq-starter?branch=master)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.rhwayfun/spring-boot-rocketmq-starter/badge.svg)](http://search.maven.org/#artifactdetails%7Cio.github.rhwayfun%7Cspring-boot-rocketmq-starter%7C0.0.4%7Cjar)
-[![License](https://img.shields.io/badge/license-Apache%202.0-orange.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+## 快速开始
 
-Open Source Spring Boot Starter for Apache RocketMQ, develop with RocketMQ easily.
-
-[中文版](README_zh_CN.md)
-
-## Quick Start
-
-### Maven Dependency
+### 依赖
 
 ```xml
 
@@ -21,25 +11,24 @@ Open Source Spring Boot Starter for Apache RocketMQ, develop with RocketMQ easil
     </dependency>
 
 ```
-### Configuration
+### 配置
 
-You just need to add a few configurations on `application.properties`, configurations are like as follows:
+在`*.properties`配置文件中添加如下配置
 
 ```properties
 
 # Apache RocketMQ
+# 实际使用需要修改nameServer和producerGroup
 spring.rocketmq.nameServer=localhost:9876
 spring.rocketmq.producer-group-name=spring-boot-test-producer-group
 
 ```
 
-Look, it's easy, but in the real environment, you need modify above configurations.
+### 消费者
 
-### Consume message
+消费者只需继承`io.github.rhwayfun.springboot.rocketmq.starter.common.AbstractRocketMqConsumer`即可
 
-For consume message, just inherit from class `io.github.rhwayfun.springboot.rocketmq.starter.common.AbstractRocketMqConsumer`
-
-Example：
+使用示例：
 
 ```java
 
@@ -99,13 +88,10 @@ Example：
 
 ```
 
-### Send message
+### 生产者
 
-We encapsulate the part of the message sent for common use. The default implementation is `DefaultRocketMqProducer`.
-
-if you need send message with RocketMQ, autowire this bean in your application. 
+对于生产者，使用`DefaultRocketMqProducer`即可，封装了常用的发送消息的方法
 
 ## License
 
-Adopting the Apache License 2.0 protocol for licensing
-
+采用Apache License 2.0协议进行许可

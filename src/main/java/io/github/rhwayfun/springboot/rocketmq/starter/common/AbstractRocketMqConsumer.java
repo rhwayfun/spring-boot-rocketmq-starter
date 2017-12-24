@@ -29,7 +29,7 @@ import java.util.Set;
  * @author rhwayfun
  * @since 0.0.1
  */
-public abstract class AbstractRocketMqConsumer<Topic extends RocketMqTopic, Content extends RocketMqContent> implements RocketMqMessageListener {
+public abstract class AbstractRocketMqConsumer<Topic extends RocketMqTopic, Content extends RocketMqContent> {
 
     protected final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -37,6 +37,10 @@ public abstract class AbstractRocketMqConsumer<Topic extends RocketMqTopic, Cont
 
     protected Class<Content> contentClazz;
 
+    /**
+     * is started.
+     *
+     */
     private boolean isStarted;
 
     /**
@@ -59,6 +63,13 @@ public abstract class AbstractRocketMqConsumer<Topic extends RocketMqTopic, Cont
      */
     private ConsumeFromWhere consumeFromWhere = ConsumeFromWhere.CONSUME_FROM_LAST_OFFSET;
 
+    /**
+     * Message consume retry strategy<br>
+     * -1, no retry,put into DLQ directly<br>
+     * 0, broker control retry frequency<br>
+     * >0, client control retry frequency
+     *
+     */
     private int delayLevelWhenNextConsume = 0;
 
     private long suspendCurrentQueueTimeMillis = -1;
@@ -99,6 +110,15 @@ public abstract class AbstractRocketMqConsumer<Topic extends RocketMqTopic, Cont
      */
     public abstract String getConsumerGroup();
 
+    /**
+     * consumer msg.
+     *
+     * @param content cntent
+     * @param msg msg
+     * @return consume result
+     */
+    public abstract boolean consumeMsg(Content content, MessageExt msg);
+
     @PostConstruct
     @SuppressWarnings("unchecked")
     public void init() throws MQClientException {
@@ -131,7 +151,6 @@ public abstract class AbstractRocketMqConsumer<Topic extends RocketMqTopic, Cont
         @SuppressWarnings("unchecked")
         public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs, ConsumeConcurrentlyContext context) {
             for (MessageExt messageExt : msgs) {
-                logger.debug("received msg: {}", messageExt);
                 try {
                     long now = System.currentTimeMillis();
                     consumeMsg(parseMsg(messageExt.getBody(), contentClazz), messageExt);
@@ -154,7 +173,6 @@ public abstract class AbstractRocketMqConsumer<Topic extends RocketMqTopic, Cont
         @SuppressWarnings("unchecked")
         public ConsumeOrderlyStatus consumeMessage(List<MessageExt> msgs, ConsumeOrderlyContext context) {
             for (MessageExt messageExt : msgs) {
-                logger.debug("received msg: {}", messageExt);
                 try {
                     long now = System.currentTimeMillis();
                     consumeMsg(parseMsg(messageExt.getBody(), contentClazz), messageExt);

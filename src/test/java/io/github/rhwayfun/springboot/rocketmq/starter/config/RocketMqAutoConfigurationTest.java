@@ -25,6 +25,10 @@ import java.util.*;
  */
 public class RocketMqAutoConfigurationTest {
 
+    private static final String TEST_NAME_SERVER = "127.0.0.1:9876";
+
+    private static final String TEST_PRODUCER_GROUP = "test-producer-group";
+
     private static final String TEST_CONSUMER_GROUP = "test-consumer-group";
 
     private static final String TEST_TOPIC = "test-topic";
@@ -36,8 +40,8 @@ public class RocketMqAutoConfigurationTest {
     @Test
     public void defaultRocketMqProducer() {
 
-        load("spring.rocketmq.nameServer=127.0.0.1:9876",
-                "spring.rocketmq.producer-group-name=test-producer-group");
+        load("spring.rocketmq.nameServer=" + TEST_NAME_SERVER,
+                "spring.rocketmq.producer-group-name=" + TEST_PRODUCER_GROUP);
 
         Assert.assertTrue(this.context.containsBean("defaultRocketMqProducer"));
         Assert.assertTrue(this.context.containsBean("mqProducer"));
@@ -45,23 +49,36 @@ public class RocketMqAutoConfigurationTest {
         DefaultRocketMqProducer defaultRocketMqProducer = this.context.getBean(DefaultRocketMqProducer.class);
         DefaultMQProducer defaultMQProducer = defaultRocketMqProducer.getProducer();
 
-        Assert.assertEquals(defaultMQProducer.getNamesrvAddr(), "127.0.0.1:9876");
-        Assert.assertEquals(defaultMQProducer.getProducerGroup(), "test-producer-group");
+        Assert.assertEquals(defaultMQProducer.getNamesrvAddr(), TEST_NAME_SERVER);
+        Assert.assertEquals(defaultMQProducer.getProducerGroup(), TEST_PRODUCER_GROUP);
     }
 
     @Test
     public void demoMqConsumer() {
-        load(false, "spring.rocketmq.nameServer=127.0.0.1:9876");
+        load(false, "spring.rocketmq.nameServer=" + TEST_NAME_SERVER);
+
         BeanDefinitionBuilder beanBuilder = BeanDefinitionBuilder.rootBeanDefinition(DemoMqConsumer.class);
         this.context.registerBeanDefinition("demoMqConsumer", beanBuilder.getBeanDefinition());
         this.context.refresh();
 
         DemoMqConsumer demoMqConsumer = (DemoMqConsumer) this.context.getBean("demoMqConsumer");
+
         Assert.assertEquals(demoMqConsumer.getConsumeMode(), ConsumeMode.CONCURRENTLY);
         Assert.assertEquals(demoMqConsumer.getConsumerGroup(), TEST_CONSUMER_GROUP);
-        Assert.assertEquals(demoMqConsumer.getConsumer().getNamesrvAddr(), "127.0.0.1:9876");
+        Assert.assertEquals(demoMqConsumer.getConsumer().getNamesrvAddr(), TEST_NAME_SERVER);
         Assert.assertEquals(demoMqConsumer.getMessageModel(), MessageModel.CLUSTERING);
         Assert.assertEquals(demoMqConsumer.getConsumeFromWhere(), ConsumeFromWhere.CONSUME_FROM_LAST_OFFSET);
+        Assert.assertEquals(demoMqConsumer.getSuspendCurrentQueueTimeMillis(), -1);
+        Assert.assertEquals(demoMqConsumer.getDelayLevelWhenNextConsume(), 0);
+
+        Assert.assertNull(demoMqConsumer.getConsumeThreadMin());
+        Assert.assertNull(demoMqConsumer.getConsumeThreadMax());
+        demoMqConsumer.setConsumeThreadMin(1);
+        demoMqConsumer.setConsumeThreadMax(10);
+        Assert.assertNotNull(demoMqConsumer.getConsumeThreadMin());
+        Assert.assertNotNull(demoMqConsumer.getConsumeThreadMax());
+
+        Assert.assertTrue(demoMqConsumer.isStarted());
     }
 
     @After
@@ -74,10 +91,10 @@ public class RocketMqAutoConfigurationTest {
     @Component
     private static class DemoMqConsumer extends AbstractRocketMqConsumer<DemoMqTopic, DemoMqContent> {
 
-
         @Override
-        public boolean consumeMsg(RocketMqContent content, MessageExt msg) {
-            System.out.println(new Date() + ", " + content);
+        public boolean consumeMsg(DemoMqContent content, MessageExt msg) {
+            System.out.println(new Date() + ", id: " + content.getId() + ",desc: " + content.getDesc());
+            System.out.println(content.toString());
             return true;
         }
 
