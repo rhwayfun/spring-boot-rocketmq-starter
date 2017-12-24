@@ -79,6 +79,10 @@ public class RocketMqAutoConfigurationTest {
         Assert.assertNotNull(demoMqConsumer.getConsumeThreadMax());
 
         Assert.assertTrue(demoMqConsumer.isStarted());
+        DemoMqContent content = new DemoMqContent();
+        content.setId(1);
+        content.setDesc("杭州");
+        Assert.assertTrue(demoMqConsumer.consumeMsg(content, null));
     }
 
     @After
