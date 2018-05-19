@@ -26,7 +26,7 @@ spring.rocketmq.producer-group-name=spring-boot-test-producer-group
 
 ### 消费者
 
-消费者只需继承`io.github.rhwayfun.springboot.rocketmq.starter.common.AbstractRocketMqConsumer`即可
+消费者只需继承`io.github.rhwayfun.springboot.rocketmq.starter.core.AbstractRocketMqConsumer`即可
 
 使用示例：
 

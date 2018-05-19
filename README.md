@@ -17,7 +17,7 @@ Open Source Spring Boot Starter for Apache RocketMQ, develop with RocketMQ easil
     <dependency>
         <groupId>io.github.rhwayfun</groupId>
         <artifactId>spring-boot-rocketmq-starter</artifactId>
-        <version>0.0.3.RELEASE</version>
+        <version>0.0.4.RELEASE</version>
     </dependency>
 
 ```
@@ -37,7 +37,7 @@ Look, it's easy, but in the real environment, you need modify above configuratio
 
 ### Consume message
 
-For consume message, just inherit from class `io.github.rhwayfun.springboot.rocketmq.starter.common.AbstractRocketMqConsumer`
+For consume message, just inherit from class `io.github.rhwayfun.springboot.rocketmq.starter.core.AbstractRocketMqConsumer`
 
 Example：
 

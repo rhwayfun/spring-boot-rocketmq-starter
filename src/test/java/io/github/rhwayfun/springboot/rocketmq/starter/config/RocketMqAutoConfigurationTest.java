@@ -1,7 +1,8 @@
 package io.github.rhwayfun.springboot.rocketmq.starter.config;
 
-import io.github.rhwayfun.springboot.rocketmq.starter.common.AbstractRocketMqConsumer;
-import io.github.rhwayfun.springboot.rocketmq.starter.common.DefaultRocketMqProducer;
+import io.github.rhwayfun.springboot.rocketmq.starter.autoconfigure.RocketMqAutoConfiguration;
+import io.github.rhwayfun.springboot.rocketmq.starter.core.AbstractRocketMqConsumer;
+import io.github.rhwayfun.springboot.rocketmq.starter.core.DefaultRocketMqProducer;
 import io.github.rhwayfun.springboot.rocketmq.starter.constants.ConsumeMode;
 import io.github.rhwayfun.springboot.rocketmq.starter.constants.RocketMqContent;
 import io.github.rhwayfun.springboot.rocketmq.starter.constants.RocketMqTopic;

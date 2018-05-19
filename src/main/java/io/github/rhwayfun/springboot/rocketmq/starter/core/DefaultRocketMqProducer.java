@@ -1,4 +1,4 @@
-package io.github.rhwayfun.springboot.rocketmq.starter.common;
+package io.github.rhwayfun.springboot.rocketmq.starter.core;
 
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.client.producer.SendResult;

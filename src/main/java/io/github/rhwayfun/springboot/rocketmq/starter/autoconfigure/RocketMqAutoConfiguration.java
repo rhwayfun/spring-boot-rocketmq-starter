@@ -1,8 +1,9 @@
-package io.github.rhwayfun.springboot.rocketmq.starter.config;
+package io.github.rhwayfun.springboot.rocketmq.starter.autoconfigure;
 
-import io.github.rhwayfun.springboot.rocketmq.starter.common.AbstractRocketMqConsumer;
-import io.github.rhwayfun.springboot.rocketmq.starter.common.DefaultRocketMqProducer;
-import io.github.rhwayfun.springboot.rocketmq.starter.common.RocketMqConsumerMBean;
+import io.github.rhwayfun.springboot.rocketmq.starter.core.AbstractRocketMqConsumer;
+import io.github.rhwayfun.springboot.rocketmq.starter.core.DefaultRocketMqProducer;
+import io.github.rhwayfun.springboot.rocketmq.starter.core.RocketMqConsumerMBean;
+import io.github.rhwayfun.springboot.rocketmq.starter.config.RocketMqProperties;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.exception.MQClientException;

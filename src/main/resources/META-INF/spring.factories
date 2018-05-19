@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-io.github.rhwayfun.springboot.rocketmq.starter.config.RocketMqAutoConfiguration
+io.github.rhwayfun.springboot.rocketmq.starter.autoconfigure.RocketMqAutoConfiguration,\
+io.github.rhwayfun.springboot.rocketmq.starter.autoconfigure.RocketMqHandlerAutoConfiguration

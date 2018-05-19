@@ -1,4 +1,4 @@
-package io.github.rhwayfun.springboot.rocketmq.starter.common;
+package io.github.rhwayfun.springboot.rocketmq.starter.core;
 
 import java.util.List;
 
